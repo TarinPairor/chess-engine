@@ -72,7 +72,8 @@ enum {
 // You are effective doing the following operation:
 // 0ULL & (1ULL << 56)
 // which will do an and operation with the bitboard and the square
-// returning 1 if the bit is set and 0 if the bit is not set.
+// returning 1 if the bit is set and 0 if the bit is not set
+// as x & 1 = x and x & 0 = 0
 #define get_bit(bitboard, square) (bitboard & (1ULL << square))
 
 // clear_bit will clear the bit at the index of the square in the bitboard.
@@ -89,7 +90,17 @@ enum {
 // with square = a1
 // You are effective doing the following operation:
 // 0ULL & ~(1ULL << 56)
-// wheree ~(1ULL << 56) 
+// where ~(1ULL << 56) is:
+// 11111111
+// 11111111
+// 11111111
+// 11111111
+// 11111111
+// 11111111
+// 11111111
+// 01111111
+// so the bits in the original bitboard that are 1 will not be changed
+// as x & 1 = x and x & 0 = 0
 #define clear_bit(bitboard, square) (bitboard &= ~(1ULL << square))
 
 
