@@ -1,0 +1,27 @@
+# Define the compiler and compiler flags
+CC = gcc
+CFLAGS = -Wall -g
+
+# Define the target executable
+TARGET = bbc
+
+# Define the source files
+SRCS = bbc.c
+
+# Define the object files
+OBJS = $(SRCS:.c=.o)
+
+# Default rule to build the target
+all: $(TARGET)
+
+# Rule to link the object files into the target executable
+$(TARGET): $(OBJS)
+    $(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+
+# Rule to compile the source files into object files
+%.o: %.c
+    $(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up the build files
+clean:
+    rm -f $(TARGET) $(OBJS)
